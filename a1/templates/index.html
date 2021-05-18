@@ -1,1 +1,49 @@
-xxx
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link    rel="stylesheet" href    ="{% static 'css/main.css' %}">
+        <script type="text/javascript" src="{% static 'js/main.js'   %}"></script>
+    </head>
+    
+    <body>
+        <form name="f1">
+        
+      <p><b>準備：</b>
+      <input type="button" name="ar" value="Array" onclick="Array_click()">
+      </p>
+      <p><b>開始：</b>
+      <input type="button" name="st" value="START" onclick="Start_click()">
+      <input type="text"   name="t0" value="" size="15" readonly="readonly">
+      </p>
+      <p><b>問題：：</b>
+      <input type="text"   name="qu" value="" size="15" readonly="readonly">
+      </p>
+      <p><b>入力：：：： </b>
+      <input type="text"   name="num_input" size="4" value="" style="font-weight : bold" readonly="readonly">
+    　</p>
+      <pre></pre>
+      <input type="button" name="b1" value="1" onclick="b1_click()">
+      <input type="button" name="b9" value="2" onclick="b9_click()">
+      <input type="button" name="b9" value="3" onclick="b9_click()">
+      <input type="button" name="b9" value="4" onclick="b9_click()">
+      <input type="button" name="b9" value="5" onclick="b9_click()">
+      <input type="button" name="cl" value="clear" onclick="Clear_click()">
+      <br>
+      <input type="button" name="b9" value="9" onclick="b9_click()">
+      <input type="button" name="b9" value="8" onclick="b9_click()">
+      <input type="button" name="b9" value="7" onclick="b9_click()">
+      <input type="button" name="b9" value="6" onclick="b9_click()">
+      <input type="button" name="b0" value="0" onclick="b0_click()">
+    
+      <p>
+      <b>完了：：</b>
+      <input type="button" name="en" value="Enter" onclick="Enter_click()">
+      <hr><!-- 時間 -->
+      <p> INPUTTEXT：：：<input type="text"   name="t1"   size="2" value="t1"></p>
+      <p> Start→Enter：：<input type="text"   name="ts"   size="4" value="ts"></p>
+    
+        </form>
+        <p class="lw">最下層dayo</p>
+    </body>
+</html>
