@@ -5,7 +5,7 @@ let question = ["8x1","2x2","3x3","4x4"];
 //LAP1の保存配列 S,1,2,3,4,E
 let timeStamp = [1,2,3,4,5,6];
 let laptime   = [1,2,3,4,5];
-
+let nowDate   = 0;
 // 入力数字
 let inputText = "" ;
 
@@ -56,6 +56,7 @@ if (inputText.length < 4)
     {
         d1 = new Date();
         timeStamp[1] = d1.getTime();
+        nowDate = timeStamp[1];
         document.f1.t_1.value = timeStamp[1];
     
         x = timeStamp[1] - timeStamp[0];
@@ -67,6 +68,7 @@ if (inputText.length < 4)
     {
         d1 = new Date();
         timeStamp[2] = d1.getTime();
+        nowDate = timeStamp[2];
         document.f1.t_2.value = timeStamp[2];
         
         x = timeStamp[2] - timeStamp[1];
@@ -78,7 +80,9 @@ if (inputText.length < 4)
     {
         d1 = new Date();
         timeStamp[3] = d1.getTime();
+        nowDate = timeStamp[3];
         document.f1.t_3.value = timeStamp[3];
+
         x = timeStamp[3] - timeStamp[2];
         document.f1.t_3_2.value = x; 
         
@@ -87,6 +91,7 @@ if (inputText.length < 4)
     {
         d1 = new Date();
         timeStamp[4] = d1.getTime();
+        nowDate = timeStamp[4];
         document.f1.t_4.value = timeStamp[4];
         
         x = timeStamp[4] - timeStamp[3];
@@ -110,8 +115,15 @@ function Enter_click()
     timeStamp[5] = d1.getTime();
     document.f1.t_e.value = timeStamp[5];
     
-    x = timeStamp[5] - timeStamp[4];
+    
+//    x = timeStamp[5] - timeStamp[4];
+    x = timeStamp[5] - nowDate;
+    
     document.f1.t_e_4.value = x;
+    
+    
+    
+    
 }
 
 function Start_click()
