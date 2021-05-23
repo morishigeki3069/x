@@ -6,10 +6,8 @@ let id = 101101;
 // 問題文の配列
 let question  = ["11x01","2x2","3x3","4x4"];
 
-
 // 二重配列　2個のカラムを持つテーブル n個
 var hairetu = new Array(2);
-
 
 for (let i = 0; i < 2 ; i++ ){
     hairetu[i] = new Array(2).fill(0); }
@@ -18,7 +16,6 @@ for (let i = 0; i < 2 ; i++ ){
 let saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 let nowDate   = 0;
 let inputText = "" ;// 入力数字
-
 
 // ______________________________
 
@@ -40,7 +37,6 @@ function clear_click(){
     saveTime[5] = 0; // 4
 
 }
-
 function b0_click(){
 if (inputText != "")
     {
@@ -114,23 +110,41 @@ if (inputText.length < 4)
     }
 }
 function reset_click(){
-    document.f1.b_reset.disabled = true;
-    
-    inputText = "";
+// 次やる    
     id = id + 101;
     question[0+1];
+    
+    document.f1.b_reset.disabled = true;
+    inputText = "";
     nowDate = 0;
     
     for (let i=0; i < 9; i++){
         saveTime[i]  = 0;
     }
-    
-    
-    
-    
+    document.f1.t_s.value   = "";
+    document.f1.t_1_s.value = "";
+    document.f1.t_1.value   = "";
+    document.f1.t_2_1.value = "";
+    document.f1.t_2.value   = "";
+    document.f1.t_2_1.value = "";
+    document.f1.t_3.value   = "";
+    document.f1.t_3_2.value = "";
+    document.f1.t_4.value   = "";
+    document.f1.t_4_3.value = "";
+    document.f1.t_e.value   = "";
+    document.f1.t_e_4.value = "";
+
+    document.f1.t_0x.value  = "";
+    document.f1.t_1x.value  = "";
+    document.f1.t_2x.value  = "";
+    document.f1.t_3x.value  = "";
+    document.f1.t_4x.value  = "";
+    document.f1.t_5x.value  = "";
+    document.f1.t_6x.value  = "";
+    document.f1.t_7x.value  = "";
+    document.f1.t_8x.value  = "";
     
 }
-
 function save_click(){
     document.f1.b_save.disabled = true;
     document.f1.t_0x.value = saveTime[0];// ID
@@ -173,7 +187,9 @@ function enter_click(){
 }
 
 function start_click(){
+    
     document.f1.b_start.disabled = true;
+    
     saveTime[0] = id;
     x = new Date();
     saveTime[1] = x.getTime();
@@ -181,7 +197,6 @@ function start_click(){
     
     document.f1.t_question.value = question[0];
 }
-
 function prep_click(){
     document.f1.b_prep.disabled = true;
     document.f1.t_input.value = 0; //入力数字
