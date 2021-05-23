@@ -6,30 +6,31 @@
         <script type="text/javascript" src  ="{% static 'js/main.js'   %}"></script>
     </head>
     <body>
-      <form name="f1">
-      <p>
-      <input type="button" name="b_prep"  value="準 備" style="font-weight : bold" onclick="Prep_click()">
-      <input type="button" name="b_start" value="開 始" style="font-weight : bold" onclick="Start_click()" >
-      <b>問題：：</b>
-      <input type="text"   name="t_question" style="font-weight : bold" size="6" readonly >
-      <p><b>入力：：：： </b>
-      <input type="text"   name="t_input" size="4" value="" style="font-weight : bold" readonly="readonly"></p>
-      <pre></pre>
-      <input type="button" name="b1" value="1" style="font-weight : bold" onclick="b1_click()">
-      <input type="button" name="b2" value="2" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b3" value="3" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b4" value="4" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b5" value="5" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="clear" value="C" style="font-weight : bold" onclick="Clear_click()">
+    <form name="f1">
+    <p>
+    <input type="button" name="b_prep"  value="準 備" style="font-weight : bold" onclick="prep_click()">
+    <input type="button" name="b_start" value="開 始" style="font-weight : bold" onclick="start_click()" >
+    <b>問題：：</b>
+    <input type="text"   name="t_question" style="font-weight : bold" size="6" readonly >
+    <p><b>入力：：：： </b>
+    <input type="text"   name="t_input" size="4" value="" style="font-weight : bold" readonly="readonly"></p>
+    <pre></pre>
+    <input type="button" name="b1" value="1" style="font-weight : bold" onclick="b1_click()">
+    <input type="button" name="b2" value="2" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b3" value="3" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b4" value="4" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b5" value="5" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="clear" value="C" style="font-weight : bold" onclick="clear_click()">
       <br>
-      <input type="button" name="b9" value="9" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b8" value="8" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b7" value="7" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b6" value="6" style="font-weight : bold" onclick="b9_click()">
-      <input type="button" name="b0" value="0" style="font-weight : bold" onclick="b0_click()">
-      <input type="button" name="b_enter" value=" Enter " style="font-weight : bold" onclick="Enter_click()">
-      <input type="button" name="b_enter" value=" Enter " style="font-weight : bold" onclick="Enter_click()">
-      <hr><!-- 時間 -->
+    <input type="button" name="b9" value="9" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b8" value="8" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b7" value="7" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b6" value="6" style="font-weight : bold" onclick="b9_click()">
+    <input type="button" name="b0" value="0" style="font-weight : bold" onclick="b0_click()">
+    <input type="button" name="b_enter" value=" Enter " style="font-weight : bold" onclick="enter_click()">
+    <input type="button" name="b_save"  value="全保存" style="font-weight : bold" onclick="save_click()">
+    <input type="button" name="b_reset" value=" reset " style="font-weight : bold" onclick="reset_click()">
+    <hr><!-- 時間 -->
     <input type="text"   name="t_s" style="background-color: transparent; border: none;" readonly size="10" >
     <input type="text"   name="t_1" style="background-color: transparent; border: none;" readonly size="10" >
     <input type="text"   name="t_2" style="background-color: transparent; border: none;" readonly size="10" >
@@ -43,24 +44,16 @@
     <input type="text"   name="t_4_3" style="background-color: transparent; border: none;" readonly size="4" >____
     <input type="text"   name="t_e_4" style="background-color: transparent; border: none;" readonly size="4" >
     <br>
-    <input type="button" name="b_save" value="全保存" style="font-weight : bold" onclick="save_click()"><br>
+    0<input type="text"  name="t_0x"><br>
+    1<input type="text"  name="t_1x"><br>
+    2<input type="text"  name="t_2x"><br>
+    3<input type="text"  name="t_3x"><br>
+    4<input type="text"  name="t_4x"><br>
+    5<input type="text"  name="t_5x"><br>
+    6<input type="text"  name="t_6x"><br>
+    7<input type="text"  name="t_7x"><br>
+    8<input type="text"  name="t_8x"><br>
 
-    0<input type="text"   name="t_0x"    size="10" ><br>
-    1<input type="text"   name="t_1x"    size="10" ><br>
-    2<input type="text"   name="t_2x"    size="10" ><br>
-    3<input type="text"   name="t_3x"    size="10" ><br>
-    4<input type="text"   name="t_4x"    size="10" ><br>
-    5<input type="text"   name="t_5x"    size="10" ><br>
-    6<input type="text"   name="t_6x"    size="10" ><br>
-    7<input type="text"   name="t_7x"    size="10" ><br>
-    8<input type="text"   name="t_8x"    size="10" ><br>
-
-    
-    
-    
-    
-    
-    </form>
-    <p class="lw">最下層</p>
-    </body>
+    </form><p class="lw">最下層</p>
+</body>
 </html>
