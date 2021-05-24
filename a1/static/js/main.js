@@ -50,16 +50,8 @@ if ( inputText != "" )
         }
     }   
 }
-function b9_click(){
-    if (inputText.length < 4)
-    {
-        inputText = inputText + "9";
-        document.f1.t_input.value = inputText;
-    }
-}
-function b1_click(){
-if (inputText.length < 4)
-{
+function b1_click(obj){
+if (inputText.length < 4){
     if      (inputText.length === 0 ){
         x = new Date();
         saveTime[2] = x.getTime();
@@ -105,7 +97,7 @@ if (inputText.length < 4)
  
     }
     else{ }
-    inputText = inputText + "1";
+    inputText = inputText + obj.value;
     document.f1.t_input.value = inputText;
     }
 }
