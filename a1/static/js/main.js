@@ -24,11 +24,8 @@ let inputText = "" ;// 入力数字
 // ______________________________
 
 
-
-
-
-
 function reset_click(){
+    reset_enable();
     document.f1.b_reset.disabled = true;
     document.f1.b_prep.disabled = false;
 
@@ -70,9 +67,15 @@ function reset_click(){
     ima += 1;
     
 }
-function save_click(){
+function reset_enable(){
     document.f1.b_save.disabled = true;
     document.f1.b_reset.disabled= false;
+
+}
+
+
+function save_click(){
+    save_enable();
     document.f1.t_0x.value      = saveTime[0];// ID
     document.f1.t_1x.value      = saveTime[1];// start
     document.f1.t_2x.value      = saveTime[2];// 1
@@ -91,23 +94,14 @@ function save_click(){
     
     
 }
+function save_enable(){
+    document.f1.b_save.disabled = true;
+    document.f1.b_reset.disabled= false;
 
-
-
-
-function b0_click(){
-if ( inputText != "" )
-    {
-        if ( inputText.length < 4 ){
-             inputText = inputText + "0";
-             document.f1.t_input.value = inputText;
-        }
-    }   
 }
 
-
 function enter_click(){
-    enable_enter();
+    enter_enable();
     
     
 /*    
@@ -132,7 +126,7 @@ function enter_click(){
     document.f1.t_e.value   = saveTime[6];
     document.f1.t_e_4.value = saveTime[6] - nowDate;
 }
-function enable_enter(){
+function enter_enable(){
     document.f1.b1.disabled      = true;
     document.f1.b2.disabled      = true;
     document.f1.b3.disabled      = true;
@@ -151,7 +145,7 @@ function enable_enter(){
 }
 
 function clear_click(){
-    enable_clear();
+    clear_enable();
     
     inputText                   = "";
     
@@ -171,11 +165,12 @@ function clear_click(){
     saveTime[5] = 0; // 4
 
 }
-function enable_clear(){
+function clear_enable(){
     document.f1.b_enter.disabled = true;
     document.f1.b0.disabled      = true;
     
 }
+
 function b1_click(obj){
 if (inputText.length < 4){
     if      (inputText.length === 0 ){
@@ -184,7 +179,7 @@ if (inputText.length < 4){
         nowDate = saveTime[2];
         document.f1.t_1.value   = saveTime[2];
         document.f1.t_1_s.value = saveTime[2] - saveTime[1];
-        enable_b1();
+        b1_enable();
     }
     else if (inputText.length === 1 ){
         x = new Date();
@@ -212,12 +207,13 @@ if (inputText.length < 4){
     document.f1.t_input.value = inputText;
     }
 }
-function enable_b1(){
+function b1_enable(){
     document.f1.b0.disabled      = false;
     document.f1.clear.disabled   = false;
     document.f1.b_enter.disabled = false;
     
 }
+
 function start_click(){
     enable_start();
     document.f1.t_input.value    = 0; //入力数字
@@ -249,6 +245,7 @@ function enable_start(){
     document.f1.b_reset.disabled = true;
 
 }
+
 function prep_click(){
     enable_prep();
 }
