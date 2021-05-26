@@ -4,7 +4,7 @@
 
 let id = [];
 // 問題群作成　九九の事情　5個
-// id_generate
+// id_generate// question_generate
 function id_generate(){
     let x = 100000;
     let y = 101;
@@ -15,7 +15,6 @@ function id_generate(){
     id = z;
 }
 
-// question_generate
 function question_generate(idNum){
     idd = idNum;
     x = idd - 100000;
@@ -30,25 +29,10 @@ function question_generate(idNum){
     return quest;
 }
 
-    saveTime[0] = id;
-    t = saveTime[0] - 100000;
-    yy = t % 100;
-    xx = Math.floor( t*0.01 );
-    document.f1.t_0x.value = xx;
-    document.f1.t_1x.value = yy;
 
-
-
-
-let question  = ["01x01","02x02","03x03","04x04","05x05"];
 let ima = 0; // 今何問目？
 let nowDate   = 0;
 let inputText = "" ;// 入力数字
-
-
-
-
-
 
 // 二重配列　9個のカラムを持つテーブル 10個
 let questAmount = 10;
@@ -114,24 +98,6 @@ function save_click(){
 function enter_click(){
     enter_enable();
     
-    
-/*    
-    inputText = document.f1.t_input.value ;
-    document.f1.t_input.value = "";
-    
-    saveTime[0] = id;
-    t = saveTime[0] - 100000;
-    yy = t % 100;
-    xx = Math.floor( t*0.01 );
-    document.f1.t_0x.value = xx;
-    document.f1.t_1x.value = yy;
-
-    if ( xx*yy == saveTime[8] )
-    {
-        saveTime[7] = 1;
-    }
-  */  
-  
     saveTime[8] = inputText;  // 入力数字
 
     x = new Date();
@@ -220,12 +186,11 @@ function start_click(){
     document.f1.t_question.value = question[ima];
 }
 function prep_click(){
-    enable_prep();
-    id_generate();
+         prep_enable();
+         id_generate();
     
-    document.f1.t_test.value = id[3];
-    x = question_generate(id[3]);
-    document.f1.t_question.value = x;
+         document.f1.t_test.value = id[3];
+         document.f1.t_question.value =question_generate(id[3]);
     
     
 }
@@ -287,7 +252,7 @@ function enable_start(){
     document.f1.b_reset.disabled = true;
 
 }
-function enable_prep(){
+function prep_enable(){
     document.f1.b1.disabled      = true;
     document.f1.b2.disabled      = true;
     document.f1.b3.disabled      = true;
