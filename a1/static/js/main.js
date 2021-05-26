@@ -6,6 +6,7 @@
 // IDから問題群　作成
 
 // リミッターをつける
+let limiter = 0;
 
 let id = [];
 let ima = 0;
@@ -13,24 +14,22 @@ function id_generate(){
     let x = 100101;
     let y = 101;
     let z = [0,0,0,0,0];
-    for (let i=0; i<5; i++){
+    limiter = z.length;
+    for (let i=0; i< limiter ; i++){
         z[i] = x + y * i ; }
-        
-    id = z;
-    limiter = 5;
+        id   = z;
+    
 }
 function question_generate(idNum){
-    idd = idNum;
-    x = idd - 100000;
     
-    yy = x % 100;
-    xx = Math.floor(x * 0.01);
+    idd = idNum - 100000;
+    yy = idd % 100;
+    xx = Math.floor(idd * 0.01);
+    up = String(xx);
+    dw = String(yy);
     
-    kami = String(xx);
-    shimo= String(yy);
-    
-    quest= kami + "x" + shimo;
-    return quest;
+    qu = up + "x" + dw;
+    return qu;
 }
 function correct(){
         idd = id[ima];
@@ -48,7 +47,6 @@ function correct(){
         
     }
     
-let limiter = 0;
 let nowDate   = 0;
 let inputText = "" ;// 入力数字
 
@@ -65,25 +63,21 @@ function start_click(){
     enable_start();
     document.f1.t_input.value    = 0; //入力数字
     
-
     saveTime[0] = id[ima];
+    
     x = new Date();
     saveTime[1] = x.getTime();
     document.f1.t_s.value        = saveTime[1];
-//    document.f1.t_question.value = question[ima];
-    
+
     document.f1.t_test.value = id[ima];
     document.f1.t_question.value = question_generate(id[ima]);
-
-    
-    
-    
-    
+    document.f1.t_remain.value = limiter - ima;
 }
 
 function prep_click(){
          prep_enable();
          id_generate();
+
          
     
 }
@@ -94,14 +88,27 @@ function reset_click(){
     document.f1.b_prep.disabled = true;
     document.f1.b_start.disabled = false;
     
+    document.f1.t_test.value = limiter;
+    
+    ima += 1;
+    
+    if (ima < limiter){
+        document.f1.b_start.disabled = false;
+    }
+    else{
+        document.f1.b_start.disabled = true;
+    
+    }
+    
 
-    document.f1.t_input.value = "";
-    document.f1.t_question.value = "";
-    document.f1.t_test.value = "";
+    document.f1.t_input.value   = "";
+    document.f1.t_question.value= "";
+    document.f1.t_test.value    = "";
+    document.f1.t_remain.value  = "";
+    
     inputText = "";
     nowDate = 0;
     
-    ima += 1;
 
     for (let i=0; i < 9; i++){
         saveTime[i]  = 0;
@@ -215,7 +222,7 @@ function b1_click(obj){
         document.f1.t_input.value = inputText;
         }
 }
-//
+//-------------------------
 function b1_enable(){
     document.f1.b0.disabled      = false;
     document.f1.clear.disabled   = false;
