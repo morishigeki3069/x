@@ -97,7 +97,7 @@ function reset_click(){
     }
     else{
         document.f1.b_start.disabled = true;
-    
+        document.f1.b_next.disabled  = false;
     }
     
 
@@ -281,6 +281,7 @@ function enable_start(){
 
 }
 function prep_enable(){
+    
     document.f1.b1.disabled      = true;
     document.f1.b2.disabled      = true;
     document.f1.b3.disabled      = true;
@@ -297,6 +298,7 @@ function prep_enable(){
     document.f1.b_enter.disabled = true;
     document.f1.b_save.disabled  = true;
     document.f1.b_reset.disabled = true;
+    document.f1.b_next.disabled  = true;
     
     document.f1.b_start.disabled = false;
 
