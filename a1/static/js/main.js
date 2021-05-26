@@ -1,10 +1,14 @@
 
 // 整理整頓
-// IDから問題群　作成
-
-let id = [];
 // 問題群作成　九九の事情　5個
 // id_generate// question_generate
+// 正解・不正解判定
+// IDから問題群　作成
+
+// リミッターをつける
+
+let id = [];
+let ima = 0;
 function id_generate(){
     let x = 100000;
     let y = 101;
@@ -13,8 +17,8 @@ function id_generate(){
         z[i] = x + y * i ; }
         
     id = z;
+    limiter = 5;
 }
-
 function question_generate(idNum){
     idd = idNum;
     x = idd - 100000;
@@ -28,9 +32,27 @@ function question_generate(idNum){
     quest= kami + "x" + shimo;
     return quest;
 }
+function correct(){
+        idd = id[ima];
+        x = idd - 100000;
+        yy = x % 100;
+        xx = Math.floor(x * 0.01);
+        if ( inputText == String(xx * yy) )
+        {
+            return 1111111 ;    
+        }
+        else
+        {
+            return 0 ;
+        }
+        
+    }
+    
+let limiter = 0;
 
 
-let ima = 0; // 今何問目？
+
+
 let nowDate   = 0;
 let inputText = "" ;// 入力数字
 
@@ -43,22 +65,47 @@ for (let i = 0; i < questAmount ; i++ ){
 var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 
 // ______________________________
+function start_click(){
+    enable_start();
+    document.f1.t_input.value    = 0; //入力数字
+    
+
+    saveTime[0] = id[ima];
+    x = new Date();
+    saveTime[1] = x.getTime();
+    document.f1.t_s.value        = saveTime[1];
+    document.f1.t_question.value = question[ima];
+}
+
+function prep_click(){
+         prep_enable();
+         id_generate();
+         
+         
+
+    
+         document.f1.t_test.value = id[ima];
+         document.f1.t_question.value =question_generate(id[ima]);
+
+    
+}
+
 function reset_click(){
     reset_enable();
     document.f1.b_reset.disabled = true;
-    document.f1.b_prep.disabled = false;
-
-
 
     document.f1.t_question.value = "";
     inputText = "";
     nowDate = 0;
     
-// 次やる    
-//    id = id + 101;
-//    question[0+1];
-//  
-    
+    ima += 1;
+/*    
+    if (ima < limiter+1 )
+    { document.f1.b_prep.disabled = false;}
+    else
+    { document.f1.b_prep.disabled = true; }
+*/
+
     for (let i=0; i < 9; i++){
         saveTime[i]  = 0;
     }
@@ -85,7 +132,8 @@ function reset_click(){
     document.f1.t_7x.value  = "";
     document.f1.t_8x.value  = "";
     
-    ima += 1;
+    
+    
     
 }
 function save_click(){
@@ -96,10 +144,10 @@ function save_click(){
     }
 }
 function enter_click(){
-    enter_enable();
-    
+         enter_enable();
+    saveTime[7] = correct();
     saveTime[8] = inputText;  // 入力数字
-
+    
     x = new Date();
     saveTime[6]             = x.getTime();
     document.f1.t_e.value   = saveTime[6];
@@ -114,7 +162,7 @@ function enter_click(){
     document.f1.t_6x.value      = saveTime[6];// enter
     document.f1.t_7x.value      = saveTime[7];// TRUE or
     document.f1.t_8x.value      = saveTime[8];// input
-    
+
 }
 function clear_click(){
     clear_enable();
@@ -138,61 +186,40 @@ function clear_click(){
 
 }
 function b1_click(obj){
-if (inputText.length < 4){
-    if      (inputText.length === 0 ){
-        x = new Date();
-        saveTime[2] = x.getTime();
-        nowDate = saveTime[2];
-        document.f1.t_1.value   = saveTime[2];
-        document.f1.t_1_s.value = saveTime[2] - saveTime[1];
-        b1_enable();
-    }
-    else if (inputText.length === 1 ){
-        x = new Date();
-        saveTime[3] = x.getTime();
-        nowDate = saveTime[3];
-        document.f1.t_2.value = saveTime[3];
-        document.f1.t_2_1.value = saveTime[3] - saveTime[2];
-    }
-    else if (inputText.length === 2 ){
-        x = new Date();
-        saveTime[4] = x.getTime();
-        nowDate = saveTime[4];
-        document.f1.t_3.value   = saveTime[4];
-        document.f1.t_3_2.value = saveTime[4] - saveTime[3];
-    }
-    else if (inputText.length === 3 ){
-        x = new Date();
-        saveTime[5] = x.getTime();
-        nowDate = saveTime[5];
-        document.f1.t_4.value = saveTime[5];
-        document.f1.t_4_3.value = saveTime[5] - saveTime[4];
-    }
-    else{ }
-    inputText = inputText + obj.value;
-    document.f1.t_input.value = inputText;
-    }
-}
-function start_click(){
-    enable_start();
-    document.f1.t_input.value    = 0; //入力数字
-    
-
-    saveTime[0] = id;
-    x = new Date();
-    saveTime[1] = x.getTime();
-    document.f1.t_s.value        = saveTime[1];
-    
-    document.f1.t_question.value = question[ima];
-}
-function prep_click(){
-         prep_enable();
-         id_generate();
-    
-         document.f1.t_test.value = id[3];
-         document.f1.t_question.value =question_generate(id[3]);
-    
-    
+    if (inputText.length < 4){
+        if      (inputText.length === 0 ){
+            x = new Date();
+            saveTime[2] = x.getTime();
+            nowDate = saveTime[2];
+            document.f1.t_1.value   = saveTime[2];
+            document.f1.t_1_s.value = saveTime[2] - saveTime[1];
+            b1_enable();
+        }
+        else if (inputText.length === 1 ){
+            x = new Date();
+            saveTime[3] = x.getTime();
+            nowDate = saveTime[3];
+            document.f1.t_2.value = saveTime[3];
+            document.f1.t_2_1.value = saveTime[3] - saveTime[2];
+        }
+        else if (inputText.length === 2 ){
+            x = new Date();
+            saveTime[4] = x.getTime();
+            nowDate = saveTime[4];
+            document.f1.t_3.value   = saveTime[4];
+            document.f1.t_3_2.value = saveTime[4] - saveTime[3];
+        }
+        else if (inputText.length === 3 ){
+            x = new Date();
+            saveTime[5] = x.getTime();
+            nowDate = saveTime[5];
+            document.f1.t_4.value = saveTime[5];
+            document.f1.t_4_3.value = saveTime[5] - saveTime[4];
+        }
+        else{ }
+        inputText = inputText + obj.value;
+        document.f1.t_input.value = inputText;
+        }
 }
 //
 function b1_enable(){
