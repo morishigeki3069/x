@@ -10,7 +10,7 @@
 let id = [];
 let ima = 0;
 function id_generate(){
-    let x = 100000;
+    let x = 100101;
     let y = 101;
     let z = [0,0,0,0,0];
     for (let i=0; i<5; i++){
@@ -39,7 +39,7 @@ function correct(){
         xx = Math.floor(x * 0.01);
         if ( inputText == String(xx * yy) )
         {
-            return 1111111 ;    
+            return 22222222222 ;    
         }
         else
         {
@@ -49,10 +49,6 @@ function correct(){
     }
     
 let limiter = 0;
-
-
-
-
 let nowDate   = 0;
 let inputText = "" ;// 入力数字
 
@@ -74,37 +70,38 @@ function start_click(){
     x = new Date();
     saveTime[1] = x.getTime();
     document.f1.t_s.value        = saveTime[1];
-    document.f1.t_question.value = question[ima];
+//    document.f1.t_question.value = question[ima];
+    
+    document.f1.t_test.value = id[ima];
+    document.f1.t_question.value = question_generate(id[ima]);
+
+    
+    
+    
+    
 }
 
 function prep_click(){
          prep_enable();
          id_generate();
          
-         
-
-    
-         document.f1.t_test.value = id[ima];
-         document.f1.t_question.value =question_generate(id[ima]);
-
     
 }
 
 function reset_click(){
     reset_enable();
     document.f1.b_reset.disabled = true;
+    document.f1.b_prep.disabled = true;
+    document.f1.b_start.disabled = false;
+    
 
+    document.f1.t_input.value = "";
     document.f1.t_question.value = "";
+    document.f1.t_test.value = "";
     inputText = "";
     nowDate = 0;
     
     ima += 1;
-/*    
-    if (ima < limiter+1 )
-    { document.f1.b_prep.disabled = false;}
-    else
-    { document.f1.b_prep.disabled = true; }
-*/
 
     for (let i=0; i < 9; i++){
         saveTime[i]  = 0;
@@ -131,11 +128,8 @@ function reset_click(){
     document.f1.t_6x.value  = "";
     document.f1.t_7x.value  = "";
     document.f1.t_8x.value  = "";
-    
-    
-    
-    
 }
+
 function save_click(){
     save_enable();
     
