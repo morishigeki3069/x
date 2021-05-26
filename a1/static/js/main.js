@@ -2,7 +2,44 @@
 // 整理整頓
 // IDから問題群　作成
 
-let id = [100101,100202,100303,100404,100505];
+let id = [];
+// 問題群作成　九九の事情　5個
+// id_generate
+function id_generate(){
+    let x = 100000;
+    let y = 101;
+    let z = [0,0,0,0,0];
+    for (let i=0; i<5; i++){
+        z[i] = x + y * i ; }
+        
+    id = z;
+}
+
+// question_generate
+function question_generate(idNum){
+    idd = idNum;
+    x = idd - 100000;
+    
+    yy = x % 100;
+    xx = Math.floor(x * 0.01);
+    
+    kami = String(xx);
+    shimo= String(yy);
+    
+    quest= kami + "x" + shimo;
+    return quest;
+}
+
+    saveTime[0] = id;
+    t = saveTime[0] - 100000;
+    yy = t % 100;
+    xx = Math.floor( t*0.01 );
+    document.f1.t_0x.value = xx;
+    document.f1.t_1x.value = yy;
+
+
+
+
 let question  = ["01x01","02x02","03x03","04x04","05x05"];
 let ima = 0; // 今何問目？
 let nowDate   = 0;
@@ -19,13 +56,15 @@ var hairetu = new Array(8);
 for (let i = 0; i < questAmount ; i++ ){
     hairetu[i] = new Array(8).fill(0); }
 
-let saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
+var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 
 // ______________________________
 function reset_click(){
     reset_enable();
     document.f1.b_reset.disabled = true;
     document.f1.b_prep.disabled = false;
+
+
 
     document.f1.t_question.value = "";
     inputText = "";
@@ -72,7 +111,6 @@ function save_click(){
         hairetu[ima][i] = saveTime[i];
     }
 }
-
 function enter_click(){
     enter_enable();
     
@@ -183,6 +221,13 @@ function start_click(){
 }
 function prep_click(){
     enable_prep();
+    id_generate();
+    
+    document.f1.t_test.value = id[3];
+    x = question_generate(id[3]);
+    document.f1.t_question.value = x;
+    
+    
 }
 //
 function b1_enable(){
