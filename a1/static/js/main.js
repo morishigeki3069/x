@@ -1,12 +1,11 @@
 
 // 整理整頓
-// リミッターをつけるって、結局問題数だろ
-let limiter   = 0;
-let id        = [];
-let id90      = [];
+let inputText = "" ;// 入力数字
 let ima       = 0;
 let nowDate   = 0;
-let inputText = "" ;// 入力数字
+let questions = [];
+
+
 
 // 二重配列　9個のカラムを持つテーブル 10個
 var hairetu = new Array(8);
@@ -14,30 +13,24 @@ for (let i=0; i<10; i++ ){
     hairetu[i] = new Array(8).fill(0); }
 var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 // ______________________________
-
-function id_generator(){
 // 問題群　二乗数
-    for ( let i=0; i<100; i++ )
-    {
-        if ( i%10 != 0)
-        {
-            id90.push( 100000 + (101*i));
-        }
-    }
-
-    for ( let i=0; i<5; i++ )
-        {
-            x = Math.floor( Math.random() * id90.length ) ;
-            id.push(id90[x]);
-            limiter = id.length;
+function id_generator(){
+    let all_id      = [];
+    for ( let i=0; i<100; i++ ){
+        if ( i%10 != 0){
+            all_id.push( 100000 + (101*i));}}
+    for ( let i=0; i<5; i++ ){
+        x = Math.floor( Math.random() * all_id.length ) ;
+        questions.push(all_id[x]);
         }
 }
 
+
 function qu_generator(idNum){
     
-    idd = idNum - 100000;
-    yy = idd % 100;
-    xx = Math.floor(idd * 0.01);
+    id = idNum - 100000;
+    yy = id % 100;
+    xx = Math.floor(id * 0.01);
     up = String(xx);
     dw = String(yy);
     
@@ -45,20 +38,19 @@ function qu_generator(idNum){
     return qu;
 }
 function correct(){
-        idd = id[ima];
-        x = idd - 100000;
-        yy = x % 100;
-        xx = Math.floor(x * 0.01);
-        if ( inputText == String(xx * yy) )
-        {
-            return 88888888888 ;    
-        }
-        else
-        {
-            return 0 ;
-        }
-        
+    id = questions[ima];
+    x = id - 100000;
+    yy = x % 100;
+    xx = Math.floor(x * 0.01);
+    if ( inputText == String(xx * yy) )
+    {
+        return 88888888888 ;    
     }
+    else
+    {
+        return 0 ;
+    }
+}
 // ______________________________
 function prep_click(){
          prep_enable();
@@ -69,15 +61,16 @@ function start_click(){
     start_enable();
     document.f1.t_input.value    = 0; //入力数字
     
-    saveTime[0] = id[ima];
+    saveTime[0] = questions[ima];
     
     x = new Date();
     saveTime[1] = x.getTime();
     document.f1.t_s.value        = saveTime[1];
 
-    document.f1.t_test.value     = id[ima];
-    document.f1.t_question.value = qu_generator(id[ima]);
-    document.f1.t_remain.value   = limiter - ima;
+    document.f1.t_test.value     = questions[ima];
+    document.f1.t_question.value = qu_generator(questions[ima]);
+//    document.f1.t_remain.value   = qs_length - ima; // 残数に利用
+    document.f1.t_remain.value   = questions.length - ima; // 残数に利用
 }
 function b1_click(obj){
     if (inputText.length < 4){
@@ -173,9 +166,10 @@ function reset_click(){
     document.f1.b_reset.disabled = true;
     document.f1.b_prep.disabled = true;
     document.f1.b_start.disabled = false;
-    document.f1.t_test.value = limiter;
+//    document.f1.t_test.value = qs_length; //表示。下にも
+    document.f1.t_test.value = questions.length; //表示。下にも
     ima += 1;
-    if (ima < limiter){
+    if (ima < questions.length){
         document.f1.b_start.disabled = false;
     }
     else{
