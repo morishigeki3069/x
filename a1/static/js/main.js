@@ -5,6 +5,8 @@ let ima       = 0;
 let nowDate   = 0;
 let questions = [];
 
+let count     = 0;
+
 
 
 // 二重配列　9個のカラムを持つテーブル 10個
@@ -24,8 +26,6 @@ function id_generator(){
         questions.push(all_id[x]);
         }
 }
-
-
 function qu_generator(idNum){
     
     id = idNum - 100000;
@@ -37,6 +37,7 @@ function qu_generator(idNum){
     qu = up + "x" + dw;
     return qu;
 }
+// ______________________________
 function correct(){
     id = questions[ima];
     x = id - 100000;
@@ -138,20 +139,8 @@ function enter_click(){
     saveTime[6]             = x.getTime();
     document.f1.t_e.value   = saveTime[6];
     document.f1.t_e_4.value = saveTime[6] - nowDate;
-    
-    document.f1.t_0x.value      = saveTime[0];// ID
-    document.f1.t_1x.value      = saveTime[1];// start
-    document.f1.t_2x.value      = saveTime[2];// 1
-    document.f1.t_3x.value      = saveTime[3];// 2
-    document.f1.t_4x.value      = saveTime[4];// 3
-    document.f1.t_5x.value      = saveTime[5];// 4
-    document.f1.t_6x.value      = saveTime[6];// enter
-    document.f1.t_7x.value      = saveTime[7];// TRUE or
-    document.f1.t_8x.value      = saveTime[8];// input
 
-}
-function next_click(){
-    document.f1.t_0xx.value = saveTime[0];
+    enter_document();    
 
 }
 function save_click(){
@@ -163,12 +152,10 @@ function save_click(){
 }
 function reset_click(){
     reset_enable();
-    document.f1.b_reset.disabled = true;
-    document.f1.b_prep.disabled = true;
-    document.f1.b_start.disabled = false;
-//    document.f1.t_test.value = qs_length; //表示。下にも
-    document.f1.t_test.value = questions.length; //表示。下にも
+
     ima += 1;
+    
+// 終了判定     
     if (ima < questions.length){
         document.f1.b_start.disabled = false;
     }
@@ -176,38 +163,27 @@ function reset_click(){
         document.f1.b_start.disabled = true;
         document.f1.b_next.disabled  = false;
     }
-    document.f1.t_input.value   = "";
-    document.f1.t_question.value= "";
-    document.f1.t_test.value    = "";
-    document.f1.t_remain.value  = "";
+    
+// 変数クリア
     inputText = "";
     nowDate = 0;
     
-    for (let i=0; i < 9; i++){
-        saveTime[i]  = 0;
-    }
-    document.f1.t_s.value   = "";
-    document.f1.t_1_s.value = "";
-    document.f1.t_1.value   = "";
-    document.f1.t_2_1.value = "";
-    document.f1.t_2.value   = "";
-    document.f1.t_2_1.value = "";
-    document.f1.t_3.value   = "";
-    document.f1.t_3_2.value = "";
-    document.f1.t_4.value   = "";
-    document.f1.t_4_3.value = "";
-    document.f1.t_e.value   = "";
-    document.f1.t_e_4.value = "";
-
-    document.f1.t_0x.value  = "";
-    document.f1.t_1x.value  = "";
-    document.f1.t_2x.value  = "";
-    document.f1.t_3x.value  = "";
-    document.f1.t_4x.value  = "";
-    document.f1.t_5x.value  = "";
-    document.f1.t_6x.value  = "";
-    document.f1.t_7x.value  = "";
-    document.f1.t_8x.value  = "";
+    
+    
+    clear_document();
+}
+function next_click(){
+    document.f1.t_0xx.value = saveTime[0];
+    document.f1.t_1xx.value = hairetu[0][0];
+    document.f1.t_2xx.value = hairetu[count][0];
+    count+=1;
+    
+    
+    
+    
+// saveTime のリセット
+    for (let i=0; i < 9; i++){ saveTime[i]  = 0; }
+    
 }
 //-------------------------
 function prep_enable(){
@@ -288,7 +264,55 @@ function save_enable(){
 function reset_enable(){
     document.f1.b_save.disabled = true;
     document.f1.b_reset.disabled= false;
+    
+    document.f1.b_reset.disabled = true;
+    document.f1.b_prep.disabled = true;
+    document.f1.b_start.disabled = false;
 
+
+}
+function clear_document(){
+    
+    document.f1.t_input.value   = "";
+    document.f1.t_question.value= "";
+    document.f1.t_test.value    = "";
+    document.f1.t_remain.value  = "";
+
+    document.f1.t_s.value   = "";
+    document.f1.t_1_s.value = "";
+    document.f1.t_1.value   = "";
+    document.f1.t_2_1.value = "";
+    document.f1.t_2.value   = "";
+    document.f1.t_2_1.value = "";
+    document.f1.t_3.value   = "";
+    document.f1.t_3_2.value = "";
+    document.f1.t_4.value   = "";
+    document.f1.t_4_3.value = "";
+    document.f1.t_e.value   = "";
+    document.f1.t_e_4.value = "";
+
+    document.f1.t_0x.value  = "";
+    document.f1.t_1x.value  = "";
+    document.f1.t_2x.value  = "";
+    document.f1.t_3x.value  = "";
+    document.f1.t_4x.value  = "";
+    document.f1.t_5x.value  = "";
+    document.f1.t_6x.value  = "";
+    document.f1.t_7x.value  = "";
+    document.f1.t_8x.value  = "";
+    
+}
+function enter_document(){
+    document.f1.t_0x.value = saveTime[0];// ID
+    document.f1.t_1x.value = saveTime[1];// start
+    document.f1.t_2x.value = saveTime[2];// 1
+    document.f1.t_3x.value = saveTime[3];// 2
+    document.f1.t_4x.value = saveTime[4];// 3
+    document.f1.t_5x.value = saveTime[5];// 4
+    document.f1.t_6x.value = saveTime[6];// enter
+    document.f1.t_7x.value = saveTime[7];// TRUE or
+    document.f1.t_8x.value = saveTime[8];// input
+    
 }
 // _____________________________________________________________
 
