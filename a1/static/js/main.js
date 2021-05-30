@@ -7,6 +7,7 @@ var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 let inputText = "" ;// 入力数字
 let ima       = 0;
 let nowDate   = 0;
+let nowTime   = 0;
 let questions = [];
 
 
@@ -65,11 +66,15 @@ function start_click(){
     start_enable();
     document.f1.t_input.value    = 0; //入力数字
     
-    saveTime[0] = questions[ima];
+    saveTime[0] = questions[ima];// 後で消す
+    saveData[ima][0] = questions[ima];
     
     x = new Date();
-    saveTime[1] = x.getTime();
-    document.f1.t_s.value        = saveTime[1];
+    saveTime[1]      = x.getTime();// 後で消す
+    saveData[ima][1] = x.getTime();
+    
+    document.f1.t_s.value        = saveTime[1];// 後で消す
+    document.f1.t_s.value        = saveData[ima][1];
 
     document.f1.t_test.value     = questions[ima];
     document.f1.t_question.value = qu_generator(questions[ima]);
@@ -79,32 +84,84 @@ function b1_click(obj){
     if (inputText.length < 4){
         if      (inputText.length === 0 ){
             x = new Date();
-            saveTime[2] = x.getTime();
-            nowDate = saveTime[2];
-            document.f1.t_1.value   = saveTime[2];
-            document.f1.t_1_s.value = saveTime[2] - saveTime[1];
+            saveTime[2]      = x.getTime();// 後で消す
+            saveData[ima][2] = x.getTime();
+            
+            
+            nowDate = saveTime[2];// 後で消す
+            nowTime = saveData[ima][2];
+
+            
+            
+            document.f1.t_1.value   = saveTime[2];// 後で消す
+            document.f1.t_1.value   = saveData[ima][2];
+            
+            document.f1.t_1_s.value = saveTime[2] - saveTime[1];// 後で消す
+            document.f1.t_1_s.value = saveData[ima][2] - saveData[ima][1];
+            
+            
+            
             b1_enable();
         }
         else if (inputText.length === 1 ){
             x = new Date();
-            saveTime[3] = x.getTime();
+            saveTime[3]      = x.getTime();// 後で消す
+            saveData[ima][3] = x.getTime();
+            
+            
             nowDate = saveTime[3];
-            document.f1.t_2.value = saveTime[3];
-            document.f1.t_2_1.value = saveTime[3] - saveTime[2];
+            nowTime = saveData[ima][3];
+            
+            
+            
+            
+            document.f1.t_2.value = saveTime[3];// 後で消す
+            document.f1.t_2.value = saveData[ima][3];
+            
+            
+            document.f1.t_2_1.value = saveTime[3] - saveTime[2];// 後で消す
+            document.f1.t_2_1.value = saveData[ima][3] - saveData[ima][2];
+            
         }
         else if (inputText.length === 2 ){
             x = new Date();
-            saveTime[4] = x.getTime();
-            nowDate = saveTime[4];
-            document.f1.t_3.value   = saveTime[4];
-            document.f1.t_3_2.value = saveTime[4] - saveTime[3];
+            saveTime[4] = x.getTime();// 後で消す
+            saveData[ima][4] = x.getTime();
+            
+            nowDate = saveTime[4];// 後で消す
+            nowTime = saveData[ima][4];
+            
+            
+            
+            document.f1.t_3.value   = saveTime[4];// 後で消す
+            document.f1.t_3.value   = saveData[ima][4];
+            
+            
+            
+            document.f1.t_3_2.value = saveTime[4] - saveTime[3];// 後で消す
+            document.f1.t_3_2.value = saveData[ima][4] - saveData[ima][3];
+            
         }
         else if (inputText.length === 3 ){
             x = new Date();
-            saveTime[5] = x.getTime();
-            nowDate = saveTime[5];
-            document.f1.t_4.value = saveTime[5];
-            document.f1.t_4_3.value = saveTime[5] - saveTime[4];
+            saveTime[5] = x.getTime();// 後で
+            saveData[ima][5] = x.getTime();
+
+            nowDate = saveTime[5];// 後で
+            nowTime = saveData[ima][5];
+            
+            
+            
+            
+            document.f1.t_4.value = saveTime[5];// 後で
+            document.f1.t_4.value = saveData[ima][5];
+            
+            
+            
+            document.f1.t_4_3.value = saveTime[5] - saveTime[4];// 後で
+            document.f1.t_4_3.value = saveData[ima][5] - saveData[ima][4];
+            
+            
         }
         else{ }
         inputText = inputText + obj.value;
@@ -131,6 +188,13 @@ function clear_click(){
     saveTime[4] = 0; // 3
     saveTime[5] = 0; // 4
 
+    saveData[ima][2] = 0; // 1
+    saveData[ima][3] = 0; // 2
+    saveData[ima][4] = 0; // 3
+    saveData[ima][5] = 0; // 4
+
+
+
 }
 function enter_click(){
          enter_enable();
@@ -140,8 +204,8 @@ function enter_click(){
     saveData[ima][8] = inputText;        // 後で消す
     
     x = new Date();
-    saveTime[6]      = x.getTime();
-    saveData[ima][6] = x.getTime();        // 後で消す
+    saveTime[6]      = x.getTime();// 後で消す
+    saveData[ima][6] = x.getTime();        
     
     document.f1.t_e.value   = saveTime[6];
     document.f1.t_e_4.value = saveTime[6] - nowDate;
@@ -151,10 +215,14 @@ function enter_click(){
 }
 function save_click(){
     save_enable();
+
+// いらない？   
+    for (let i=0; i<9; i++)
+    {    hairetu[ima][i] = saveTime[i];}
+//
     
-    for (let i=0; i<9; i++){
-        hairetu[ima][i] = saveTime[i];
-    }
+    
+    
 }
 function reset_click(){
     reset_enable();
@@ -180,9 +248,10 @@ function reset_click(){
 }
 function next_click(){
 
-// saveTime のリセット
+//いらない？？  saveTime のリセット 
     for (let i=0; i < 9; i++){ saveTime[i]  = 0; }
-    
+//
+
 }
 function test_click(){
     
@@ -353,6 +422,16 @@ function enter_document(){
     document.f1.t_6x.value = saveTime[6];// enter
     document.f1.t_7x.value = saveTime[7];// TRUE or
     document.f1.t_8x.value = saveTime[8];// input
+
+    document.f1.t_0x.value = saveData[ima][0];// ID
+    document.f1.t_1x.value = saveData[ima][1];// start
+    document.f1.t_2x.value = saveData[ima][2];// 1
+    document.f1.t_3x.value = saveData[ima][3];// 2
+    document.f1.t_4x.value = saveData[ima][4];// 3
+    document.f1.t_5x.value = saveData[ima][5];// 4
+    document.f1.t_6x.value = saveData[ima][6];// enter
+    document.f1.t_7x.value = saveData[ima][7];// TRUE or
+    document.f1.t_8x.value = saveData[ima][8];// input
     
 }
 // _____________________________________________________________
