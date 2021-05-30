@@ -1,6 +1,7 @@
 
 // 整理整頓
 var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
+
 let inputText = "" ;// 入力数字
 let ima       = 0;
 let nowDate   = 0;
@@ -8,61 +9,11 @@ let questions = [];
 let count     = 0;//????
 
 
-
-
-// ２次元になった ので
-let questionsLength = 4; // 問題数
+// ２次元配列
+let qsLength = 4;                       // 問題数
 var saveData = new Array(1);
-for (let i=0; i< questionsLength; i++)
+for (let i=0; i< qsLength; i++)
 { saveData[i] = new Array(8).fill(i); } // カラムの数
-
-//-------------------------
-
-function test_click(){
-    
-    document.f1.t_0_0x.value    = saveData[0][0];
-    document.f1.t_0_1x.value    = saveData[0][1];
-    document.f1.t_0_2x.value    = saveData[0][2];
-    document.f1.t_0_3x.value    = saveData[0][3];
-    document.f1.t_0_4x.value    = saveData[0][4];
-    document.f1.t_0_5x.value    = saveData[0][5];
-    document.f1.t_0_6x.value    = saveData[0][6];
-    document.f1.t_0_7x.value    = saveData[0][7];
-    document.f1.t_0_8x.value    = saveData[0][8];
-
-    document.f1.t_1_0x.value    = saveData[1][0];
-    document.f1.t_1_1x.value    = saveData[1][1];
-    document.f1.t_1_2x.value    = saveData[1][2];
-    document.f1.t_1_3x.value    = saveData[1][3];
-    document.f1.t_1_4x.value    = saveData[1][4];
-    document.f1.t_1_5x.value    = saveData[1][5];
-    document.f1.t_1_6x.value    = saveData[1][6];
-    document.f1.t_1_7x.value    = saveData[1][7];
-    document.f1.t_1_8x.value    = saveData[1][8];
-
-    document.f1.t_2_0x.value    = saveData[2][0];
-    document.f1.t_2_1x.value    = saveData[2][1];
-    document.f1.t_2_2x.value    = saveData[2][2];
-    document.f1.t_2_3x.value    = saveData[2][3];
-    document.f1.t_2_4x.value    = saveData[2][4];
-    document.f1.t_2_5x.value    = saveData[2][5];
-    document.f1.t_2_6x.value    = saveData[2][6];
-    document.f1.t_2_7x.value    = saveData[2][7];
-    document.f1.t_2_8x.value    = saveData[2][8];
-
-    document.f1.t_3_0x.value    = saveData[3][0];
-    document.f1.t_3_1x.value    = saveData[3][1];
-    document.f1.t_3_2x.value    = saveData[3][2];
-    document.f1.t_3_3x.value    = saveData[3][3];
-    document.f1.t_3_4x.value    = saveData[3][4];
-    document.f1.t_3_5x.value    = saveData[3][5];
-    document.f1.t_3_6x.value    = saveData[3][6];
-    document.f1.t_3_7x.value    = saveData[3][7];
-    document.f1.t_3_8x.value    = saveData[3][8];
-}
-
-
-
 
 // ______________________________
 // 問題群　二乗数
@@ -71,11 +22,13 @@ function id_generator(){
     for ( let i=0; i<100; i++ ){
         if ( i%10 != 0){
             all_id.push( 100000 + (101*i));}}
-    for ( let i=0; i<5; i++ ){
+    for ( let i=0; i<4; i++ ){
         x = Math.floor( Math.random() * all_id.length ) ;
         questions.push(all_id[x]);
         }
 }
+
+
 function qu_generator(idNum){
     
     id = idNum - 100000;
@@ -87,7 +40,6 @@ function qu_generator(idNum){
     qu = up + "x" + dw;
     return qu;
 }
-// ______________________________
 function correct(){
     id = questions[ima];
     x = id - 100000;
@@ -234,6 +186,48 @@ function next_click(){
 // saveTime のリセット
     for (let i=0; i < 9; i++){ saveTime[i]  = 0; }
     
+}
+function test_click(){
+    
+    document.f1.t_0_0x.value    = saveData[0][0];
+    document.f1.t_0_1x.value    = saveData[0][1];
+    document.f1.t_0_2x.value    = saveData[0][2];
+    document.f1.t_0_3x.value    = saveData[0][3];
+    document.f1.t_0_4x.value    = saveData[0][4];
+    document.f1.t_0_5x.value    = saveData[0][5];
+    document.f1.t_0_6x.value    = saveData[0][6];
+    document.f1.t_0_7x.value    = saveData[0][7];
+    document.f1.t_0_8x.value    = saveData[0][8];
+
+    document.f1.t_1_0x.value    = saveData[1][0];
+    document.f1.t_1_1x.value    = saveData[1][1];
+    document.f1.t_1_2x.value    = saveData[1][2];
+    document.f1.t_1_3x.value    = saveData[1][3];
+    document.f1.t_1_4x.value    = saveData[1][4];
+    document.f1.t_1_5x.value    = saveData[1][5];
+    document.f1.t_1_6x.value    = saveData[1][6];
+    document.f1.t_1_7x.value    = saveData[1][7];
+    document.f1.t_1_8x.value    = saveData[1][8];
+
+    document.f1.t_2_0x.value    = saveData[2][0];
+    document.f1.t_2_1x.value    = saveData[2][1];
+    document.f1.t_2_2x.value    = saveData[2][2];
+    document.f1.t_2_3x.value    = saveData[2][3];
+    document.f1.t_2_4x.value    = saveData[2][4];
+    document.f1.t_2_5x.value    = saveData[2][5];
+    document.f1.t_2_6x.value    = saveData[2][6];
+    document.f1.t_2_7x.value    = saveData[2][7];
+    document.f1.t_2_8x.value    = saveData[2][8];
+
+    document.f1.t_3_0x.value    = saveData[3][0];
+    document.f1.t_3_1x.value    = saveData[3][1];
+    document.f1.t_3_2x.value    = saveData[3][2];
+    document.f1.t_3_3x.value    = saveData[3][3];
+    document.f1.t_3_4x.value    = saveData[3][4];
+    document.f1.t_3_5x.value    = saveData[3][5];
+    document.f1.t_3_6x.value    = saveData[3][6];
+    document.f1.t_3_7x.value    = saveData[3][7];
+    document.f1.t_3_8x.value    = saveData[3][8];
 }
 //-------------------------
 function prep_enable(){
