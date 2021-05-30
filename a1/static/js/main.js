@@ -1,6 +1,6 @@
 
 // 整理整頓
-const qsLength  = 2;      // 問題数
+const qsLength  = 4;      // 問題数
 
 var saveTime  = [0,0,0,0,0,0,0,0,0]; //1-9
 
@@ -15,7 +15,7 @@ let questions = [];
 
 var saveData = new Array(1);        // 必須１行目　この方法しかない？？
 for (let i=0; i< qsLength; i++)
-{ saveData[i] = new Array(9).fill(i); } // カラムの数
+{ saveData[i] = new Array(9).fill(0); } // カラムの数
 
 // ______________________________
 // 問題群　二乗数
