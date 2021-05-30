@@ -1,16 +1,18 @@
+
 // 整理整頓
 const qsLength  = 4;// 問題数
 let inputText = "" ;// 入力数字
 let ima       = 0;
 let nowTime   = 0;
 let questions = [];
-
-// ２次元配列
-var saveData = new Array(1);        // 必須１行目　この方法しかない？？
-for (let i=0; i< qsLength; i++)
-{ saveData[i] = new Array(9).fill(0); } // カラムの数
-
+var saveData = new Array(1); // ２次元配列必須１行目?
 // ______________________________
+function chunkDataMap(){
+    for (let i=0; i< qsLength; i++)
+    {
+        saveData[i] = new Array(9).fill(0);  // カラムの数
+    }
+}
 // 問題群　二乗数
 function id_generator(){
     
@@ -49,21 +51,10 @@ function correct(){
 }
 // ______________________________
 function prep_click(){
-         prep_enable();
-         id_generator(qsLength);
+    prep_enable();
+    id_generator(qsLength);
+    chunkDataMap();
 
-}
-function start_click(){
-    start_enable();
-    document.f1.t_input.value    = 0; //入力数字
-    saveData[ima][0] = questions[ima];
-    
-    x = new Date();
-    saveData[ima][1] = x.getTime();
-    document.f1.t_s.value        = saveData[ima][1];
-
-    document.f1.t_question.value = qu_generator(questions[ima]);
-    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
 }
 function b1_click(obj){
     if (inputText.length < 4){
@@ -131,46 +122,30 @@ function clear_click(){
     saveData[ima][4] = 0; // 3
     saveData[ima][5] = 0; // 4
 
-
+}
+function start_click(){
+    start_enable();
+    document.f1.t_input.value    = 0; //入力数字
+    saveData[ima][0] = questions[ima];
+    x = new Date();
+    saveData[ima][1] = x.getTime();
+    document.f1.t_s.value        = saveData[ima][1];
+    document.f1.t_question.value = qu_generator(questions[ima]);
+    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
 
 }
+
 function enter_click(){
     enter_enable();
-    
     x = new Date();
     saveData[ima][6] = x.getTime();        
     saveData[ima][7] = correct();
     saveData[ima][8] = inputText;        
+    enter_document();
+    reset();
     
-    enter_document();    
 }
-function save_click(){
-    save_enable();
-}
-function reset_click(){
-    reset_enable();
-
-    ima += 1;
-    
-// 終了判定     
-    if (ima < qsLength){
-        document.f1.b_start.disabled = false;
-    }
-    else{
-        document.f1.b_start.disabled = true;
-        document.f1.b_next.disabled  = false;
-    }
-    
-// 変数クリア
-    inputText = "";
-    nowTime = 0;
-    
-    
-    clear_document();
-}
-function next_click(){
-
-}
+//-------------------------
 function test_click(){
     
     document.f1.t_0_0x.value    = saveData[0][0];
@@ -230,10 +205,6 @@ function prep_enable(){
     document.f1.b_prep.disabled  = true;
     document.f1.b_start.disabled = true;
     document.f1.b_enter.disabled = true;
-    document.f1.b_save.disabled  = true;
-    document.f1.b_reset.disabled = true;
-    document.f1.b_next.disabled  = false;
-    
     document.f1.b_start.disabled = false;
 
 }
@@ -252,8 +223,6 @@ function start_enable(){
     document.f1.b_prep.disabled  = true;
     document.f1.b_start.disabled = true;
     document.f1.b_enter.disabled = true;
-    document.f1.b_save.disabled  = true;
-    document.f1.b_reset.disabled = true;
 
 }
 function b1_enable(){
@@ -267,6 +236,7 @@ function clear_enable(){
     document.f1.b0.disabled      = true;
     
 }
+
 function enter_enable(){
     document.f1.b1.disabled      = true;
     document.f1.b2.disabled      = true;
@@ -280,26 +250,27 @@ function enter_enable(){
     document.f1.b0.disabled      = true;
     document.f1.clear.disabled   = true;
     document.f1.b_enter.disabled = true;
-    document.f1.b_save.disabled = false;
-
-    
 }
-function save_enable(){
-    document.f1.b_save.disabled = true;
-    document.f1.b_reset.disabled= false;
-
+function enter_document(){
+    document.f1.t_e.value   = saveData[ima][6];
+    document.f1.t_e_4.value = saveData[ima][6] - nowTime;
 }
-function reset_enable(){
-    document.f1.b_save.disabled = true;
-    document.f1.b_reset.disabled= false;
+
+function reset(){
     
-    document.f1.b_reset.disabled = true;
     document.f1.b_prep.disabled = true;
     document.f1.b_start.disabled = false;
-
+    reset_document();
+// 変数クリア
+    inputText = "";
+    nowTime = 0;
+    ima += 1;
+// 終了判定     
+    if (ima < qsLength){ document.f1.b_start.disabled = false; }
+    else{ document.f1.b_start.disabled = true; }
 
 }
-function clear_document(){
+function reset_document(){
     
     document.f1.t_input.value   = "";
     document.f1.t_question.value= "";
@@ -318,19 +289,5 @@ function clear_document(){
     document.f1.t_e.value   = "";
     document.f1.t_e_4.value = "";
 
-    document.f1.t_0x.value  = "";
-    document.f1.t_1x.value  = "";
-    document.f1.t_2x.value  = "";
-    document.f1.t_3x.value  = "";
-    document.f1.t_4x.value  = "";
-    document.f1.t_5x.value  = "";
-    document.f1.t_6x.value  = "";
-    document.f1.t_7x.value  = "";
-    document.f1.t_8x.value  = "";
-    
-}
-function enter_document(){
-    document.f1.t_e.value   = saveData[ima][6];
-    document.f1.t_e_4.value = saveData[ima][6] - nowTime;
 }
 // _____________________________________________________________
