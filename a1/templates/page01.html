@@ -2,7 +2,16 @@
 
 {% block main %}
 
-111111111
+{{ numnum }}
+<p>for bun</p>
+<ul>
+    {% for i in questions %}
+    <li>{{ i }}</li>
+    {% empty %}
+    <p>kara</p>
+    {% endfor %}
+</ul>
+
     
     
 {% endblock   %}
