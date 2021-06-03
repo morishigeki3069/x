@@ -7,3 +7,5 @@ class page01(TemplateView):
     template_name = "page01.html"
 class page02(TemplateView):
     template_name = "page02.html"
+class page03(TemplateView):
+    template_name = "page03.html"

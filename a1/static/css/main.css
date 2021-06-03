@@ -1,3 +1,35 @@
+
+
+#navbar1 {
+    list-style: none;                 /* リストの『マーク』を、表示しなくする*/
+    background-color: lightsteelblue; /* background-color*/
+    
+}
+#navbar1 ul {
+    margin: 0 auto;
+    overflow: hidden; /* 改行？ボックスに収まらない場合、収まらない部分は非表示 */
+}
+
+#navbar1 li {
+    list-style-type: none;  /* リストの『マーク』を、表示しなくする*/
+    float: left;            /* これがないと縦表示*/
+}
+
+#navbar1 a {
+    color: black; 
+    display: block; 
+    padding: 0 30px  ;
+    
+}
+
+
+#navbar1 li :hover{
+    background: orange;
+}
+
+/* -------------------------------- */
+
+
 input {
 background-color: #bde9ba;
 }
