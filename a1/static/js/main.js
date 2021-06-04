@@ -23,6 +23,7 @@ function id_generator(){
 
     for ( let i=0; i< qsLength; i++ ){
         x = Math.floor( Math.random() * all_id.length );
+    //  saveData に変更できるks？？？    
         questions.push(all_id[x]); }
 }
 function qu_generator(idNum){
@@ -36,7 +37,7 @@ function qu_generator(idNum){
     return up + "x" + dw;}
 function correct(){
     
-    id = questions[ima];
+    id = saveData[ima][0];
     x = id - 100000;
     yy = x % 100;
     xx = Math.floor(x * 0.01);
@@ -52,8 +53,19 @@ function correct(){
 // ______________________________
 function prep_click(){
     prep_enable();
-    id_generator();
     chunkDataMap();
+    id_generator();
+
+}
+function start_click(){
+    start_enable();
+    document.f1.t_input.value    = 0; //入力数字
+    saveData[ima][0] = questions[ima];
+    x = new Date();
+    saveData[ima][1] = x.getTime();
+    document.f1.t_s.value        = saveData[ima][1];
+    document.f1.t_question.value = qu_generator(saveData[ima][0]);
+    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
 
 }
 function b1_click(obj){
@@ -123,17 +135,7 @@ function clear_click(){
     saveData[ima][5] = 0; // 4
 
 }
-function start_click(){
-    start_enable();
-    document.f1.t_input.value    = 0; //入力数字
-    saveData[ima][0] = questions[ima];
-    x = new Date();
-    saveData[ima][1] = x.getTime();
-    document.f1.t_s.value        = saveData[ima][1];
-    document.f1.t_question.value = qu_generator(questions[ima]);
-    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
 
-}
 
 function enter_click(){
     enter_enable();
