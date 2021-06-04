@@ -52,7 +52,7 @@ function correct(){
 // ______________________________
 function prep_click(){
     prep_enable();
-    id_generator(qsLength);
+    id_generator();
     chunkDataMap();
 
 }
