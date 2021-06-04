@@ -3,24 +3,27 @@
 const qsLength2  = 4;// 問題数
 
 let questions2 = [];
+
 var saveData2  = new Array(1); // ２次元配列必須１行目?
 
 function b1_gene1_click(){
     document.f2.b1_gene1.value ="sakura";
     chunkDataMap2();
-    
-    
-    
     id_generator2();
 
 }
 function b1_gene2_click(){
     document.f2.b1_gene2.value ="sakura";
-    
+/*    
     document.f2.t1_0.value    = saveData2[0][0];
     document.f2.t1_1.value    = saveData2[1][0];
     document.f2.t1_2.value    = saveData2[2][0];
     document.f2.t1_3.value    = saveData2[3][0];
+*/
+    document.f2.t1_0.value    = questions2[0];
+    document.f2.t1_1.value    = questions2[1];
+    document.f2.t1_2.value    = questions2[2];
+    document.f2.t1_3.value    = questions2[3];
 
 }
 

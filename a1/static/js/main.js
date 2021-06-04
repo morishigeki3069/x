@@ -1,80 +1,50 @@
 
 // 整理整頓
-const qsLength  = 3;// 問題数
-let inputText = "" ;// 入力数字
-let ima       = 0;
-let nowTime   = 0;
-var saveData = new Array(1); // ２次元配列必須１行目?
+const qsLength  = 3 ;// 問題数
+let   inputText = "";// 入力数字
+let   ima       = 0 ;
+let   nowTime   = 0 ;
+var   saveData  = new Array(1); // ２次元配列必須１行目?
 // ______________________________
-// マップを作る
-function chunkDataMap(){
+function prep_click(){
+// saveDataマップを作る
     for (let i=0; i< qsLength; i++)
-    {
-        saveData[i] = new Array(9).fill(0);  // カラムの数
-    }
-}
-// 問題群　二乗数
-function id_generator(){
-    let karique = [];
+    { saveData[i] = new Array(9).fill(0); }
+    
+// id 群 random生成 　二乗数
     let all_id      = [];
     for (let i=0; i<100; i++){
         if ( i%10 != 0){
-            all_id.push( 100000 + (101*i));}
-    }
-    
+            all_id.push( 100000 + (101*i));}}
 
+// ここでマップ[0]に入れる
     for ( let i=0; i< qsLength; i++ ){
         x = Math.floor( Math.random() * all_id.length );
-        saveData[i][0] = all_id[x];
-    }
-    
-    
-    
-    
-    
-    
+        saveData[i][0] = all_id[x];}
+
+    prep_enable();
 }
-function qu_generator(idNum){
+
+function start_click(){
+// ここでマップ[1]に入れる
+    x = new Date();
+    saveData[ima][1] = x.getTime();
+    document.f1.t_s.value = saveData[ima][1];
     
-    id = idNum - 100000;
+// 問題文作成
+    id = saveData[ima][0] - 100000;
     yy = id % 100;
     xx = Math.floor(id * 0.01);
     up = String(xx);
     dw = String(yy);
-    
-    return up + "x" + dw;}
-function correct(){
-    id = saveData[ima][0];
-    x = id - 100000;
-    yy = x % 100;
-    xx = Math.floor(x * 0.01);
-    if ( inputText == String(xx * yy))
-    {
-        return 99999 ;    
-    }
-    else
-    {
-        return 0 ;
-    }
-}
-// ______________________________
-function prep_click(){
-    prep_enable();
-    chunkDataMap();
-    // マップも出来てる
-    id_generator();
-}
-function start_click(){
-    start_enable();
-    document.f1.t_input.value    = 0; //入力数字
-    // ここでマップに入る
-    x = new Date();
-    saveData[ima][1] = x.getTime();
-    document.f1.t_s.value        = saveData[ima][1];
-    document.f1.t_question.value = qu_generator(saveData[ima][0]);
+
+    document.f1.t_question.value = up + "x" + dw; // 問題文
     document.f1.t_remain.value   = qsLength - ima; // 残数に利用
+    document.f1.t_input.value    = 0; //入力数字
+    start_enable();
 
 }
+
 function b1_click(obj){
     if (inputText.length < 4){
         if      (inputText.length === 0 ){
@@ -143,13 +113,23 @@ function clear_click(){
 
 }
 function enter_click(){
-    enter_enable();
+//
     x = new Date();
-    saveData[ima][6] = x.getTime();        
-    saveData[ima][7] = correct();
+    saveData[ima][6] = x.getTime();
+    
+// 正解・不正解
+    x  = saveData[ima][0] - 100000;
+    yy = x % 100;
+    xx = Math.floor(x * 0.01);
+    if ( inputText == String(xx * yy))
+    { saveData[ima][7] = 888888; }
+    else
+    { saveData[ima][7] = 0; }
+//
     saveData[ima][8] = inputText;        
     enter_document();
     reset();
+    enter_enable();
     
 }
 //-------------------------
