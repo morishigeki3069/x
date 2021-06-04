@@ -3,15 +3,14 @@
 <html>
 <head>
     <link rel="stylesheet" href ="{% static 'css/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="main.css">
-    <script type="text/javascript" src  ="{% static 'js/main.js'   %}"></script>
-        {% include "_nav.html" %}
 
+    <script type="text/javascript" src ="{% static 'js/main.js'   %}"></script>
+    <script type="text/javascript" src ="{% static 'js/q_generator.js'   %}"></script>
+    {% include "_nav.html" %}
 </head>
-
 <body>
     {% block main %}
-    kokononaka ha nai?
+        kokononaka ha nai?
     {% endblock %}
 </body>
 </html>

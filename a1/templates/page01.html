@@ -1,6 +1,24 @@
 {% extends "_base.html" %}
-
 {% block main %}
+<!-- block main以下にかく-->
+<form  name="f2">
+<input name="b1_gene1"  type="button" value="準　備" onclick="b1_gene1_click()"  ><br>
+<input name="b1_gene2"  type="button" value="準　備2" onclick="b1_gene2_click()"  ><br>
+
+0<input name="t1_0" size="10" type="text" ><br>
+1<input name="t1_1" size="10" type="text" ><br>
+2<input name="t1_2" size="10" type="text" ><br>
+3<input name="t1_3" size="10" type="text" ><br>
+4<input name="t1_4" size="10" type="text" ><br>
+
+
+
+
+
+
+
+
+
 
 {{ numnum }}
 <p>for bun</p>
@@ -12,7 +30,7 @@
     {% endfor %}
 </ul>
 
-    
+</form>
     
 {% endblock   %}
 

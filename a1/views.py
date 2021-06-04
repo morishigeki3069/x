@@ -8,20 +8,12 @@ class page01(TemplateView):
 
     def get_context_data(self):
         contx = super().get_context_data()
+        
         contx[ "numnum" ] = 123456789
+        
         contx[ "questions" ] = [
-            100000,
-            100101,
-            100202,
-            100303,
-            100404,
-            100505,
-            100606,
-            100707,
-            100808,
-            100909,
-            101010,
-            ]
+            100000,100101,100202,100303,100404,100505,100606,
+            100707,100808,100909,101010,]
         return contx
 
 
