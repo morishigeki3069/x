@@ -3,14 +3,16 @@
 const qsLength2  = 4;// 問題数
 
 let questions2 = [];
-var saveData2 = new Array(1); // ２次元配列必須１行目?
+var saveData2  = new Array(1); // ２次元配列必須１行目?
 
 function b1_gene1_click(){
     document.f2.b1_gene1.value ="sakura";
     chunkDataMap2();
+    
+    
+    
     id_generator2();
-    
-    
+
 }
 function b1_gene2_click(){
     document.f2.b1_gene2.value ="sakura";

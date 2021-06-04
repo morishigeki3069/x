@@ -1,12 +1,12 @@
 
 // 整理整頓
-const qsLength  = 4;// 問題数
+const qsLength  = 3;// 問題数
 let inputText = "" ;// 入力数字
 let ima       = 0;
 let nowTime   = 0;
-let questions = [];
 var saveData = new Array(1); // ２次元配列必須１行目?
 // ______________________________
+// マップを作る
 function chunkDataMap(){
     for (let i=0; i< qsLength; i++)
     {
@@ -15,15 +15,24 @@ function chunkDataMap(){
 }
 // 問題群　二乗数
 function id_generator(){
-    
+    let karique = [];
     let all_id      = [];
     for (let i=0; i<100; i++){
         if ( i%10 != 0){
-            all_id.push( 100000 + (101*i));}}
+            all_id.push( 100000 + (101*i));}
+    }
+    
 
     for ( let i=0; i< qsLength; i++ ){
         x = Math.floor( Math.random() * all_id.length );
-        questions.push(all_id[x]); }
+        saveData[i][0] = all_id[x];
+    }
+    
+    
+    
+    
+    
+    
 }
 function qu_generator(idNum){
     
@@ -35,8 +44,7 @@ function qu_generator(idNum){
     
     return up + "x" + dw;}
 function correct(){
-    
-    id = questions[ima];
+    id = saveData[ima][0];
     x = id - 100000;
     yy = x % 100;
     xx = Math.floor(x * 0.01);
@@ -52,8 +60,19 @@ function correct(){
 // ______________________________
 function prep_click(){
     prep_enable();
-    id_generator(qsLength);
     chunkDataMap();
+    // マップも出来てる
+    id_generator();
+}
+function start_click(){
+    start_enable();
+    document.f1.t_input.value    = 0; //入力数字
+    // ここでマップに入る
+    x = new Date();
+    saveData[ima][1] = x.getTime();
+    document.f1.t_s.value        = saveData[ima][1];
+    document.f1.t_question.value = qu_generator(saveData[ima][0]);
+    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
 
 }
 function b1_click(obj){
@@ -123,18 +142,6 @@ function clear_click(){
     saveData[ima][5] = 0; // 4
 
 }
-function start_click(){
-    start_enable();
-    document.f1.t_input.value    = 0; //入力数字
-    saveData[ima][0] = questions[ima];
-    x = new Date();
-    saveData[ima][1] = x.getTime();
-    document.f1.t_s.value        = saveData[ima][1];
-    document.f1.t_question.value = qu_generator(questions[ima]);
-    document.f1.t_remain.value   = qsLength - ima; // 残数に利用
-
-}
-
 function enter_click(){
     enter_enable();
     x = new Date();
@@ -236,7 +243,6 @@ function clear_enable(){
     document.f1.b0.disabled      = true;
     
 }
-
 function enter_enable(){
     document.f1.b1.disabled      = true;
     document.f1.b2.disabled      = true;
@@ -255,7 +261,6 @@ function enter_document(){
     document.f1.t_e.value   = saveData[ima][6];
     document.f1.t_e_4.value = saveData[ima][6] - nowTime;
 }
-
 function reset(){
     
     document.f1.b_prep.disabled = true;
